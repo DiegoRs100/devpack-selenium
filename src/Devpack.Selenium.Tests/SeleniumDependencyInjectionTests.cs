@@ -20,8 +20,8 @@ namespace Devpack.Selenium.Tests
 
             var serviceProvider = services.BuildServiceProvider();
 
-            var firefoxHandler = serviceProvider.GetService<IFirefoxSeleniumHandler>();
-            var chromeHandler = serviceProvider.GetService<IChromeSeleniumHandler>();
+            using var firefoxHandler = serviceProvider.GetService<IFirefoxSeleniumHandler>();
+            using var chromeHandler = serviceProvider.GetService<IChromeSeleniumHandler>();
 
             firefoxHandler.Should().NotBeNull();
             chromeHandler.Should().NotBeNull();
