@@ -14,6 +14,8 @@ namespace Devpack.Selenium.Tests
 
             services.AddSeleniumWebDriver(options => options
                 .UseBrowsers(Browser.Firefox, Browser.Chrome)
+                .UseWebDriverPath("c://webdrivers")
+                .DisableHeadless()
             );
 
             var serviceProvider = services.BuildServiceProvider();
