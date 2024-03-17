@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace Devpack.Selenium.Handlers.Interfaces
 {
@@ -21,5 +23,8 @@ namespace Devpack.Selenium.Handlers.Interfaces
         string GetTextByAnchor(string anchor);
         string GetInputValueById(string id);
         IEnumerable<IWebElement> GetElementsByAnchor(string anchor);
+
+        void SwithToFrameByAnchor(string anchor);
+        void ReturnFromFrame();
     }
 }
