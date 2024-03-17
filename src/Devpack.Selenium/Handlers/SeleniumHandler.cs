@@ -86,6 +86,17 @@ namespace Devpack.Selenium.Handlers
                 .GetAttribute("value");
         }
 
+        public void SwithToFrameByAnchor(string anchor)
+        {
+            var element = Wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(anchor)));
+            WebDriver.SwitchTo().Frame(element);
+        }
+
+        public void ReturnFromFrame()
+        {
+            WebDriver.SwitchTo().ParentFrame();
+        }
+
         public IEnumerable<IWebElement> GetElementsByAnchor(string anchor)
         {
             return Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector(anchor)));

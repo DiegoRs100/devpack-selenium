@@ -125,6 +125,32 @@ namespace Devpack.Selenium.Tests
             text.Should().Be(expectedText);
         }
 
+        [Fact(DisplayName = "Deve redirecionar a navegação para um IFrame quando ele estiver presente na página.")]
+        public void SwithToFrameByAnchor()
+        {
+            using var handler = new SeleniumHandler(Browser.Chrome, string.Empty, true);
+            handler.Navigate(_addressPage1);
+
+            handler.SwithToFrameByAnchor("#frame-1");
+            var text = handler.GetTextByAnchor("h");
+
+            text.Should().Be("Page 2");
+        }
+
+        [Fact(DisplayName = "Deve retonar a navegação para a página principal quando a navegação estiver em um IFrame.")]
+        public void ReturnFromFrame()
+        {
+            using var handler = new SeleniumHandler(Browser.Chrome, string.Empty, true);
+            handler.Navigate(_addressPage1);
+
+            handler.SwithToFrameByAnchor("#frame-1");
+            handler.ReturnFromFrame();
+
+            var text = handler.GetTextByAnchor("h");
+
+            text.Should().Be("Page 1");
+        }
+
         [Fact(DisplayName = "Deve selecionar a opção de um dropdown quando ele existir com o id informado.")]
         public void SetDropDownById()
         {
