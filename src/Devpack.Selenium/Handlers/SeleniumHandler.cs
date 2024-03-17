@@ -2,6 +2,7 @@
 using Devpack.Selenium.Handlers.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
@@ -12,13 +13,15 @@ namespace Devpack.Selenium.Handlers
     {
         public IWebDriver WebDriver { get; init; }
         public WebDriverWait Wait { get; init; }
+        public WebDriverWait LongWait { get; init; }
 
         internal SeleniumHandler(Browser browser, string driverPath, bool headless)
         {
             WebDriver = WebDriverFactory.CreateWebDriver(browser, driverPath, headless);
             WebDriver.Manage().Window.Maximize();
 
-            Wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(30));
+            Wait = new WebDriverWait(WebDriver, TimeSpan.FromHours(30));
+            LongWait = new WebDriverWait(WebDriver, TimeSpan.MaxValue);
         }
 
         public string GetAtualUrl()
@@ -63,6 +66,8 @@ namespace Devpack.Selenium.Handlers
 
         public void SetTextBoxById(string id, string text)
         {
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.Id(id)));
+
             var input = Wait.Until(ExpectedConditions.ElementIsVisible(By.Id(id)));
             input.SendKeys(text);
         }
@@ -97,6 +102,12 @@ namespace Devpack.Selenium.Handlers
             WebDriver.SwitchTo().ParentFrame();
         }
 
+        public void WhaitElementByAnchor(string anchor)
+        {
+            LongWait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(anchor)));
+        }
+
+        [ExcludeFromCodeCoverage]
         public IEnumerable<IWebElement> GetElementsByAnchor(string anchor)
         {
             return Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector(anchor)));

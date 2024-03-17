@@ -11,3 +11,7 @@
 ## 7.0.2.1 - 2024-03-17
 
 - Implementation of Iframe methods in the selenium interface.
+
+## 7.0.3.0 - 2024-03-17
+
+- Implementation of Log Wait method.
