@@ -7,3 +7,7 @@
 ## 7.0.2.0 - 2024-03-17
 
 - Implementation Iframe handlers.
+
+## 7.0.2.1 - 2024-03-17
+
+- Implementation of Iframe methods in the selenium interface.
