@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 
 namespace Devpack.Selenium.Handlers.Interfaces
 {
@@ -26,5 +24,7 @@ namespace Devpack.Selenium.Handlers.Interfaces
 
         void SwithToFrameByAnchor(string anchor);
         void ReturnFromFrame();
+        void WhaitElementByAnchor(string anchor);
+        void WhaitChangePage(string atualUrl);
     }
 }

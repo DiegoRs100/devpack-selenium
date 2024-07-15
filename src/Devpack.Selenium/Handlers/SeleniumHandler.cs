@@ -21,7 +21,7 @@ namespace Devpack.Selenium.Handlers
             WebDriver.Manage().Window.Maximize();
 
             Wait = new WebDriverWait(WebDriver, TimeSpan.FromHours(30));
-            LongWait = new WebDriverWait(WebDriver, TimeSpan.MaxValue);
+            LongWait = new WebDriverWait(WebDriver, TimeSpan.FromHours(30));
         }
 
         public string GetAtualUrl()
@@ -104,7 +104,12 @@ namespace Devpack.Selenium.Handlers
 
         public void WhaitElementByAnchor(string anchor)
         {
-            LongWait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(anchor)));
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(anchor)));
+        }
+
+        public void WhaitChangePage(string atualUrl)
+        {
+            Wait.Until(w => !w.Url.Equals(atualUrl, StringComparison.OrdinalIgnoreCase));
         }
 
         [ExcludeFromCodeCoverage]

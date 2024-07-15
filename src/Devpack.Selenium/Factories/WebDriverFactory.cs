@@ -36,6 +36,8 @@ namespace Devpack.Selenium.Factories
             if (headless)
                 options.AddArgument("--headless");
 
+            options.AddArgument("load-extension=/Users\\Diego\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\hniebljpgcogalllopnjokppmgbhaden\\3.3.1_0");
+
             return new ChromeDriver(driverPath, options);
         }
     }
